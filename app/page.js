@@ -1,13 +1,15 @@
 "use client";
-import { Box, Stack, TextField, Button, Modal } from "@mui/material";
+import { Box, Stack, TextField, Button, Modal, Container, Typography } from "@mui/material";
+import ImageGrid from "./ImageGrid";
 import { useState } from "react";
+import ChatIcon from "@mui/icons-material/Chat";
 
 export default function Home() {
   const [inputMessage, setInputMessage] = useState("");
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hi im a helpful assistant, how can i help you today?",
+      content: "Hi welcome to Leia's Flowershop!, How can I help you today?",
     },
   ]);
 
@@ -44,15 +46,14 @@ export default function Home() {
   };
 
   return (
-    <Box
-      width={"100vw"}
-      height={"100vh"}
-      display={"flex"}
-      flexDirection={"column"}
-      justifyContent={"center"}
-      alignItems={"center"}
-    >
-      <Button onClick={() => setShowModal(true)}>Open Chat</Button>
+    <Container maxWidth={"lg"}>
+      <Typography variant="h2" align="center" gutterBottom>
+        Welcome to Leia&apos;s Shop
+      </Typography>
+      <Typography variant="h6" align="center" paragraph>
+        Explore our beautiful collection of flowers and bouquets.
+      </Typography>
+      <ImageGrid />
       <Modal open={showModal} onClose={() => setShowModal(false)} sx={{ display: "flex", justifyContent: "center" }}>
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"}>
           <Stack
@@ -100,6 +101,16 @@ export default function Home() {
           </Stack>
         </Box>
       </Modal>
-    </Box>
+      <Box display={"flex"} justifyContent={"flex-end"} alignItems={"flex-end"}>
+        <Button
+          onClick={() => setShowModal(true)}
+          variant="contained"
+          sx={{ position: "fixed", bottom: "2em", right: "2em" }}
+        >
+          <ChatIcon />
+          <Typography marginLeft={".5em"}> Open Chat </Typography>
+        </Button>
+      </Box>
+    </Container>
   );
 }
